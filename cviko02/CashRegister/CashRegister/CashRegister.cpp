@@ -2,11 +2,11 @@
 #include <exception>
 
 #define INIT_ID 1000
-#define length(x) (sizeof(x)/sizeof(*(x)))
 
 int CashRegister::m_idCounter;
 
-CashRegister::CashRegister(int receipts) : m_receipts(new Receipt[receipts]) {
+CashRegister::CashRegister(int receipts) :  m_receipts(new Receipt[receipts]),
+											m_maxId(receipts) {
 }
 
 CashRegister::~CashRegister() {
@@ -14,12 +14,11 @@ CashRegister::~CashRegister() {
 }
 
 Receipt& CashRegister::createReceipt(double cost, double vat) {
-	if (m_idCounter < length(m_receipts)) {
+	if (m_idCounter < m_maxId) {
 		m_receipts[m_idCounter].setCost(cost);
 		m_receipts[m_idCounter].setId(INIT_ID + m_idCounter);
 		m_receipts[m_idCounter].setVat(vat);
-		m_idCounter++;
-		return m_receipts[m_idCounter-1];
+		return m_receipts[m_idCounter++];
 	}
 	throw "too many receipts";
 }

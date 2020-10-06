@@ -16,6 +16,7 @@ class CashRegister {
 
  private:
 	Receipt *	m_receipts;
+	int			m_maxId;
 	static int	m_idCounter;
 };
 
