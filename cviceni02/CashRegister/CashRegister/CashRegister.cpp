@@ -23,7 +23,7 @@ Receipt& CashRegister::createReceipt(double cost, double vat) {
 	throw "too many receipts";
 }
 
-Receipt& CashRegister::getReceipt(int id) {
+Receipt& CashRegister::getReceipt(int id) const {
 	if (m_idCounter == 0 || (m_idCounter+INIT_ID)<=id) {
 		throw "no receipt to return";
 	}

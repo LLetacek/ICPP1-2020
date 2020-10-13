@@ -10,7 +10,7 @@ class CashRegister {
 	 ~CashRegister();
 
 	 Receipt& createReceipt(double cost, double vat);
-	 Receipt& getReceipt(int id);
+	 Receipt& getReceipt(int id) const;
 	 double getCash() const;
 	 double getCashVat() const;
 
