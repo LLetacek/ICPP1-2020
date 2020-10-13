@@ -12,7 +12,7 @@ class CashRegister {
 	 Receipt& createReceipt(double cost, double vat);
 	 Receipt& getReceipt(int id);
 	 double getCash() const;
-	 double getCashVatBasis();
+	 double getCashVat() const;
 
  private:
 	Receipt *	m_receipts;

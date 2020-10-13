@@ -24,16 +24,11 @@ Receipt& CashRegister::createReceipt(double cost, double vat) {
 }
 
 Receipt& CashRegister::getReceipt(int id) {
-	for (int i = 0; i < m_idCounter; i++) {
-		if (m_receipts[i].getId() == id)
-			return m_receipts[i];
-	}
-
-	if (m_idCounter == 0) {
+	if (m_idCounter == 0 || (m_idCounter+INIT_ID)<=id) {
 		throw "no receipt to return";
 	}
 
-	return m_receipts[0];
+	return m_receipts[id-INIT_ID];
 }
 
 double CashRegister::getCash() const {
@@ -44,7 +39,7 @@ double CashRegister::getCash() const {
 	return sum;
 }
 
-double CashRegister::getCashVatBasis() {
+double CashRegister::getCashVat() const {
 	double sum = 0;
 	for (int i = 0; i < m_idCounter; i++) {
 		sum += m_receipts[i].getCost() * (1 + m_receipts[i].getVat());

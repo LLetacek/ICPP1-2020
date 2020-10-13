@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
 		}	
 	}
 
-	cout << "SUM: \n" << cReg.getCashVatBasis() << endl << cReg.getCash() << endl;
+	cout << "SUM: \n" << cReg.getCashVat() << endl << cReg.getCash() << endl;
 
 	findReceipt(&cReg, 1000);
 	findReceipt(&cReg, 1009);
