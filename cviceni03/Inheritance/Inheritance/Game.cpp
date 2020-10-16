@@ -1,3 +1,5 @@
+#define _USE_MATH_DEFINES
+
 #include <cmath>
 #include "Game.h"
 #include "StaticObject.h"
@@ -80,6 +82,9 @@ MovingObject** Game::findMovingObjectInArea(double x, double y, double r, double
 	int idCounter = 0;
 	if (m_counter == 0)
 		return nullptr;
+
+	uMin = std::fmod(uMin, 2 * M_PI);
+	uMax = std::fmod(uMax, 2 * M_PI);
 
 	MovingObject** obArr = new MovingObject * [m_counter+1];
 	for (int i = 0; i < m_counter; i++) {
