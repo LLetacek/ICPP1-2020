@@ -11,9 +11,6 @@ Game::Game(int size) :	m_size((size<=0)?8:size),
 						m_objects(new Object*[m_size]) {}
 
 Game::~Game() {
-	for (int i = 0; i < m_counter; i++) {
-		delete m_objects[i];
-	}
 	delete[] m_objects;
 }
 
@@ -66,10 +63,11 @@ MovingObject** Game::findMovingObjectInArea(double x, double y, double r) const 
 
 	MovingObject** obArr = new MovingObject*[m_counter+1];
 	for (int i = 0; i < m_counter; i++) {
-		if (dynamic_cast<MovingObject*>(m_objects[i]) &&
+		MovingObject* tmp = dynamic_cast<MovingObject*>(m_objects[i]);
+		if ( tmp &&
 			pow(m_objects[i]->GetX() - x,2) + pow(m_objects[i]->GetY() - y,2) <= pow(r,2))
 		{
-			obArr[idCounter++] = (MovingObject*)m_objects[i];
+			obArr[idCounter++] = tmp;
 		}
 	}
 
@@ -88,12 +86,13 @@ MovingObject** Game::findMovingObjectInArea(double x, double y, double r, double
 
 	MovingObject** obArr = new MovingObject * [m_counter+1];
 	for (int i = 0; i < m_counter; i++) {
-		if (dynamic_cast<MovingObject*>(m_objects[i]) &&
+		MovingObject* tmp = dynamic_cast<MovingObject*>(m_objects[i]);
+		if (tmp &&
 			pow(m_objects[i]->GetX() - x, 2) + pow(m_objects[i]->GetY() - y, 2) <= pow(r,2) &&
 			((MovingObject*)m_objects[i])->GetAngleOfRotation() >= std::fmin(uMin, uMax) &&
 			((MovingObject*)m_objects[i])->GetAngleOfRotation() <= std::fmax(uMin, uMax))
 		{
-			obArr[idCounter++] = (MovingObject*)m_objects[i];
+			obArr[idCounter++] = tmp;
 		}
 	}
 
