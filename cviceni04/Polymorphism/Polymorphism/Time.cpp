@@ -8,23 +8,23 @@ int Time::CompareTo(IComparable* obj) const {
 		throw "nelze porovnavat s nullptr";
 
 	Time* compObj = dynamic_cast<Time*>(obj);
-	if (compObj) {
+	if (compObj == nullptr) {
 		throw "nelze tyto objekty porovnat";
 	}
 
-	if (m_hour < compObj->m_hour) 
+	if (this->m_hour < compObj->m_hour) 
 		return -1;
-	else if (m_hour > compObj->m_hour) 
+	else if (this->m_hour > compObj->m_hour) 
 		return 1;
 
-	if (m_minute < compObj->m_minute) 
+	if (this->m_minute < compObj->m_minute) 
 		return -1;
-	else if (m_minute > compObj->m_minute) 
+	else if (this->m_minute > compObj->m_minute) 
 		return 1;
 
-	if (m_second < compObj->m_second) 
+	if (this->m_second < compObj->m_second) 
 		return -1;
-	else if (m_second > compObj->m_second) 
+	else if (this->m_second > compObj->m_second) 
 		return 1;
 	
 	return 0;
