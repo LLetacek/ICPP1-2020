@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 #include "Time.h"
 
 #define ARRAY_SIZE 10
@@ -20,8 +21,8 @@ void SortArray(IComparable** array, int size) {
 	}
 }
 
-int random (int max) {
-	return rand() % (max + 1);
+int random (int min, int max) {
+	return rand() % (max - min) + min;
 }
 
 void printOut(Time** time, int size) {
@@ -35,8 +36,9 @@ int main(int argc, char** argv) {
 
 	Time** time = new Time*[ARRAY_SIZE];
 
+	std::srand(std::time(0));
 	for (int i = 0; i < ARRAY_SIZE; i++) {
-		time[i] = new Time(random(23), random(59), random(59));
+		time[i] = new Time(random(0,23), random(0,59), random(0,59));
 	}
 
 	printOut(time, ARRAY_SIZE);
