@@ -1,8 +1,10 @@
 #include "Time.h"
 
-Time::Time(int hour, int minute, int second) :	m_hour(hour % 24),
-												m_minute(minute % 60),
-												m_second(second % 60) {}
+Time::Time(int hour, int minute, int second) 
+	:	m_hour((0 <= hour && hour <= 23) ? hour : throw "hodiny musi byt cislo 0-23"),
+		m_minute((0 <= minute && minute <= 59) ? hour : throw "minuty musi byt cislo 0-59"),
+		m_second((0 <= second && second <= 59) ? hour : throw "sekundy musi byt cislo 0-59") {}
+
 int Time::CompareTo(IComparable* obj) const {
 	if (obj == nullptr)
 		throw "nelze porovnavat s nullptr";

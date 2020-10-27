@@ -4,11 +4,11 @@
 
 #include "IComparable.h"
 
-struct Time : public IComparable {
+struct Time : public IComparable, public IObject{
  public:
 	 Time(int hour, int minute, int second);
-	 int CompareTo(IComparable* obj) const;
-	 std::string ToString() const;
+	 int CompareTo(IComparable* obj) const override;
+	 std::string ToString() const override;
  private:
 	 int m_hour;
 	 int m_minute;
