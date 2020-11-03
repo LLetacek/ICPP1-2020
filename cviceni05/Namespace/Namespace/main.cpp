@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Model.h"
+#include "Phonebook.h"
 
 using namespace Model;
 using namespace Entities;
@@ -37,40 +37,38 @@ int main(int argc, char** argv) {
 		cout << book.FindPhone("Andrew Koenig");
 
 		cout << "\"" << endl << endl;
-	} catch (const char* e) {
-		cout << e << endl;
+	} catch (const std::invalid_argument& e) {
+		cout << e.what() << endl;
 	}
 
 	cout << "| KONTROLA VYJIMEK |" << endl;
 
 	try {
 		book.AddPerson(Person(-1, "James Gosling", "666 666 666"));
-	}
-	catch (const char* e) {
+	} catch (const std::invalid_argument& e) {
 		cout << "pridani osoby s id[-1]: " 
-			 << endl << e << endl << endl;
+			 << endl << e.what() << endl << endl;
 	}
 
 	try {
 		book.FindPhone("James Gosling");
-	}
-	catch (const char* e) {
+	} catch (const std::invalid_argument& e) {
 		cout << "hledani osoby s neexistujicim jmenem v seznamu: " 
-			 << endl << e << endl << endl;
+			 << endl << e.what() << endl << endl;
 	}
 
 	try {
 		book.FindPhone(-1);
-	} catch (const char* e) {
+	} catch (const std::invalid_argument& e) {
 		cout << "hledani osoby s id[-1]: " 
-			 << endl << e << endl << endl;
+			 << endl << e.what() << endl << endl;
 	}
 
 	try {
 		book.FindPhone("");
-	} catch (const char* e) {
+	} catch (const std::invalid_argument& e) {
 		cout << "hledani osoby se jmenem prazdneho retezce: " 
-			 << endl << e << endl << endl;
+			 << endl << e.what() << endl << endl;
 	}
 
 	system("pause");

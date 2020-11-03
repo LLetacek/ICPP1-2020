@@ -1,10 +1,11 @@
 #include "Entities.h"
+#include <stdexcept>
 
 using namespace Entities;
 using namespace std;
 
 Person::Person(int id, string name, string phone) 
-	: m_id((id>=0) ? id : throw "-- id nemuze byt zaporne --"),
+	: m_id((id>=0) ? id : throw invalid_argument("id nemuze byt zaporne")),
 	  m_name(name),
 	  m_phone(phone) {}
 
@@ -19,3 +20,5 @@ string Person::GetName() const {
 string Person::GetPhone() const {
 	return m_phone;
 }
+
+

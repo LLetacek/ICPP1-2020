@@ -3,7 +3,7 @@
 #define _MODEL_H
 
 
-#include "ListElement.h"
+#include "Entities.h"
 #include <string>
 
 namespace Model {
@@ -16,6 +16,17 @@ namespace Model {
 		 std::string FindPhone(std::string name) const;
 		 std::string FindPhone(int id) const;
 	 private:
+		 class ListElement {
+		  public:
+			  ListElement(Entities::Person person);
+			  ListElement(Entities::Person person, ListElement* element);
+			  ListElement* GetNextElement() const;
+			  Entities::Person GetElement() const;
+		  private:
+			  ListElement* m_next;
+			  const Entities::Person m_person;
+		 };
+
 		 ListElement* m_begin;
 	};
 }

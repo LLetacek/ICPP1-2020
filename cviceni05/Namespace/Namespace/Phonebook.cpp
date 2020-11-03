@@ -1,4 +1,5 @@
-#include "Model.h"
+#include "Phonebook.h"
+#include <stdexcept>
 
 using namespace Model;
 using namespace Entities;
@@ -25,7 +26,7 @@ void Phonebook::AddPerson(Person person) {
 
 string Phonebook::FindPhone(string name) const {
 	if (name.empty())
-		throw "-- jmeno nemuze byt prazdne --";
+		throw invalid_argument("jmeno nemuze byt prazdne");
 
 	ListElement* tmp = m_begin;
 	while (tmp != nullptr && (tmp->GetElement().GetName().compare(name)!=0)) {
@@ -35,12 +36,12 @@ string Phonebook::FindPhone(string name) const {
 	if (tmp != nullptr)
 		return tmp->GetElement().GetPhone();
 
-	throw "-- nenalezeno --";
+	throw invalid_argument("nenalezeno");
 }
 
 string Phonebook::FindPhone(int id) const {
 	if (id < 0)
-		throw "-- id nemuze byt zaporne --";
+		throw invalid_argument("id nemuze byt zaporne");
 
 	ListElement* tmp = m_begin;
 	while (tmp != nullptr && tmp->GetElement().GetId() != id) {
@@ -50,5 +51,20 @@ string Phonebook::FindPhone(int id) const {
 	if (tmp != nullptr)
 		return tmp->GetElement().GetPhone();
 
-	throw "-- nenalezeno --";
+	throw invalid_argument("nenalezeno");
+}
+
+Phonebook::ListElement::ListElement(Person person)
+	: ListElement(person, nullptr) {}
+
+Phonebook::ListElement::ListElement(Person person, ListElement* element)
+	: m_person(person),
+	m_next(element) {}
+
+Phonebook::ListElement* Phonebook::ListElement::GetNextElement() const {
+	return m_next;
+}
+
+Person Phonebook::ListElement::GetElement() const {
+	return m_person;
 }
