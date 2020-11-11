@@ -1,0 +1,4 @@
+3
+Bjarne Stroustrup 30.12.1950 Vestergade;Aarhus;8000
+Scott Meyers 09.04.1959 Riverside Drive;New York;10023
+Dennis Ritchie 09.09.1941 Berkeley;New Jersey;7069
