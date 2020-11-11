@@ -47,7 +47,9 @@ std::istream& operator>>(std::istream& is, Address& obj) {
 	std::string street;
 	std::string town;
 	int pin;
+	char skip;
 
+	skip = is.get();
 	std::getline(is, street, ';');
 	std::getline(is, town, ';');
 	is >> pin;
