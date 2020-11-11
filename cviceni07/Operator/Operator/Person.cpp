@@ -55,7 +55,7 @@ std::istream& operator>>(std::istream& is, Person& obj) {
 	std::string lastName;
 	Address residence{ "","",0 };
 	Date birthDay{ 0,0,0 };
-	char skip;
+
 	is >> name >> lastName
 		>> birthDay
 		>> residence;
