@@ -17,6 +17,8 @@ public:
 	void SetStreet(std::string street);
 	void SetTown(std::string town);
 	void SetPin(int pin);
+	friend std::ostream& operator<<(std::ostream& os, const Address& obj);
+	friend std::istream& operator>>(std::istream& is, Address& obj);
 private:
 	std::string m_street;
 	std::string m_town;

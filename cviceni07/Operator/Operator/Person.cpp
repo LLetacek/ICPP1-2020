@@ -42,28 +42,18 @@ void Person::SetBirthDay(Date birthDay) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Person& obj) {
-	os << obj.GetName()
-		<< ' ' << obj.GetLastName()
-		<< ' ' << obj.GetBirthDay()
-		<< ' ' << obj.GetResidence();
+	os << obj.m_name
+		<< ' ' << obj.m_lastName
+		<< ' ' << obj.m_birthDay
+		<< ' ' << obj.m_residence;
 
 	return os;
 }
 
 std::istream& operator>>(std::istream& is, Person& obj) {
-	std::string name;
-	std::string lastName;
-	Address residence{ "","",0 };
-	Date birthDay{ 0,0,0 };
-
-	is >> name >> lastName
-		>> birthDay
-		>> residence;
-
-	obj.SetName(name);
-	obj.SetLastName(lastName);
-	obj.SetResidence(residence);
-	obj.SetBirthDay(birthDay);
+	is >> obj.m_name >> obj.m_lastName
+		>> obj.m_birthDay
+		>> obj.m_residence;
 
 	return is;
 }

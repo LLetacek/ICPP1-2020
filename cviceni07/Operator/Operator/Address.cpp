@@ -34,29 +34,22 @@ void Address::SetPin(int pin) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Address& obj) {
-	os << obj.GetStreet();
+	os << obj.m_street;
 	os << ';';
-	os << obj.GetTown();
+	os << obj.m_town;
 	os << ';';
-	os << obj.GetPin();
+	os << obj.m_pin;
 
 	return os;
 }
 
 std::istream& operator>>(std::istream& is, Address& obj) {
-	std::string street;
-	std::string town;
-	int pin;
 	char skip;
 
 	skip = is.get();
-	std::getline(is, street, ';');
-	std::getline(is, town, ';');
-	is >> pin;
-
-	obj.SetStreet(street);
-	obj.SetTown(town);
-	obj.SetPin(pin);
+	std::getline(is, obj.m_street, ';');
+	std::getline(is, obj.m_town, ';');
+	is >> obj.m_pin;
 
 	return is;
 }

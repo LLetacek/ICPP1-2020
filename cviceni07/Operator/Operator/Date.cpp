@@ -34,26 +34,19 @@ void Date::SetYear(int year) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Date& obj) {
-	os << std::setw(2) << std::setfill('0') << obj.GetDay()
+	os << std::setw(2) << std::setfill('0') << obj.m_day
 		<< '.'
-		<< std::setw(2) << std::setfill('0') << obj.GetMonth()
+		<< std::setw(2) << std::setfill('0') << obj.m_month
 		<< '.'
-		<< obj.GetYear();
+		<< obj.m_year;
 
 	return os;
 }
 
 std::istream& operator>>(std::istream& is, Date& obj) {
-	int day;
-	int month;
-	int year;
 	char skip;
 
-	is >> day >> skip >> month >> skip >> year;
-
-	obj.SetDay(day);
-	obj.SetMonth(month);
-	obj.SetYear(year);
+	is >> obj.m_day >> skip >> obj.m_month >> skip >> obj.m_year;
 
 	return is;
 }

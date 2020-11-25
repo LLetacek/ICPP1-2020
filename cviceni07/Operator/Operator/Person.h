@@ -16,6 +16,8 @@ public:
 	void SetLastName(std::string lastName);
 	void SetResidence(Address residence);
 	void SetBirthDay(Date birthDay);
+	friend std::ostream& operator<<(std::ostream& os, const Person& obj);
+	friend std::istream& operator>>(std::istream& is, Person& obj);
 private:
 	std::string m_name;
 	std::string m_lastName;
