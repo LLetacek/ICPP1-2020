@@ -2,8 +2,6 @@
 #ifndef _QUEUE_H
 #define _QUEUE_H
 
-struct ANetworkElement;
-
 template <typename T>
 struct Queue {
 private:
@@ -73,9 +71,11 @@ public:
         return false;
     }
 
-    using ApplyFunction = void (ANetworkElement::*) (T);
+    template <class E>
+    using ApplyFunction = void (E::*) (T);
 
-    void Processing(ANetworkElement *element, ApplyFunction f) {
+    template <class E>
+    void Processing(ANetworkElement *element, ApplyFunction<E> f) {
         El* el = m_first;
         while (el) {
             (element->*f)(el->Value);
@@ -84,9 +84,11 @@ public:
         }
     }
 
-    using ApplyFunctionProcess = void(ANetworkElement::*) ();
+    template <class E>
+    using ApplyFunctionProcess = void(E::*) ();
 
-    void Processing(ApplyFunctionProcess f) {
+    template <class E>
+    void Processing(ApplyFunctionProcess<E> f) {
         El* el = m_first;
         while (el) {
             ((el->Value)->*f)();
