@@ -25,7 +25,7 @@ class Matrix {
 
  private:
 	 void deleteMatrix();
-	 T& getElement(unsigned int row, unsigned int column) const;
+	 T& getElement(unsigned int row, unsigned int column);
 
 	 unsigned int m_row;
 	 unsigned int m_col;
@@ -38,7 +38,7 @@ Matrix<T>::Matrix(unsigned int row, unsigned int column) : m_row(row),
 														   m_col(column) 
 {
 	m_elements = new T * [m_row];
-	for (int x = 0; x < m_row; ++x) {
+	for (unsigned int x = 0; x < m_row; ++x) {
 		m_elements[x] = new T[m_col]();
 	}
 }
@@ -50,9 +50,9 @@ Matrix<T>::Matrix(const Matrix<T>& matrix) {
 	m_col = matrix.m_col;
 	m_elements = new T*[m_row];
 
-	for (int x = 0; x < m_row; ++x) {
+	for (unsigned int x = 0; x < m_row; ++x) {
 		m_elements[x] = new T[m_col]();
-		for (int y = 0; y < m_col; ++y) {
+		for (unsigned int y = 0; y < m_col; ++y) {
 			m_elements[x][y] = matrix.m_elements[x][y];
 		}
 	}
@@ -68,7 +68,7 @@ void Matrix<T>::deleteMatrix() {
 	if (m_elements == nullptr)
 		return;
 
-	for (int x = 0; x < m_row; ++x) {
+	for (unsigned int x = 0; x < m_row; ++x) {
 		delete[] m_elements[x];
 	}
 	delete[] m_elements;
@@ -76,13 +76,13 @@ void Matrix<T>::deleteMatrix() {
 
 template<typename T>
 void Matrix<T>::Setter(unsigned int row, unsigned int column, T element) {
-	Getter(row, column) = element;
+	getElement(row, column) = element;
 }
 
 template<typename T>
 void Matrix<T>::Setter(T* elements) {
-	for (int x = 0; x < m_row; ++x) {
-		for (int y = 0; y < m_col; ++y) {
+	for (unsigned int x = 0; x < m_row; ++x) {
+		for (unsigned int y = 0; y < m_col; ++y) {
 			m_elements[x][y] = elements[x*(m_col) + y];
 		}
 	}
@@ -99,7 +99,7 @@ const T& Matrix<T>::Getter(unsigned int row, unsigned int column) const {
 }
 
 template<typename T>
-T& Matrix<T>::getElement(unsigned int row, unsigned int column) const {
+T& Matrix<T>::getElement(unsigned int row, unsigned int column) {
 	if (m_row <= row || m_col <= column)
 		throw std::invalid_argument("sahate mimo pole");
 	return m_elements[row][column];
@@ -109,9 +109,9 @@ template<typename T>
 template<typename R>
 Matrix<R> Matrix<T>::Cast() const {
 	Matrix<R> newMatrix{ m_row, m_col };
-	for (int x = 0; x < m_row; ++x) {
-		for (int y = 0; y < m_col; ++y) {
-			newMatrix.Getter(x, y) = (R)(m_elements[x][y]);
+	for (unsigned int x = 0; x < m_row; ++x) {
+		for (unsigned int y = 0; y < m_col; ++y) {
+			newMatrix.Getter(x, y) = static_cast<R>(m_elements[x][y]);
 		}
 	}
 	return newMatrix;
@@ -120,8 +120,8 @@ Matrix<R> Matrix<T>::Cast() const {
 template<typename T>
 Matrix<T> Matrix<T>::Transposition() const {
 	Matrix<T> newMatrix{ m_row, m_col };
-	for (int x = 0; x < m_row; ++x) {
-		for (int y = 0; y < m_col; ++y) {
+	for (unsigned int x = 0; x < m_row; ++x) {
+		for (unsigned int y = 0; y < m_col; ++y) {
 			newMatrix.Getter(x, y) = m_elements[y][x];
 		}
 	}
@@ -134,9 +134,9 @@ Matrix<T> Matrix<T>::Multiply(const Matrix& matrix) const {
 		throw std::invalid_argument("matice nemohou byt vynasobeny");
 
 	Matrix<T> newMatrix{ m_row, matrix.m_col };
-	for (int z = 0; z < matrix.m_col; ++z) {
-		for (int x = 0; x < m_row; ++x) {
-			for (int y = 0; y < m_col; ++y) {
+	for (unsigned int z = 0; z < matrix.m_col; ++z) {
+		for (unsigned int x = 0; x < m_row; ++x) {
+			for (unsigned int y = 0; y < m_col; ++y) {
 				newMatrix.m_elements[x][z] += m_elements[x][y] * matrix.m_elements[y][z];
 			}
 		}
@@ -147,8 +147,8 @@ Matrix<T> Matrix<T>::Multiply(const Matrix& matrix) const {
 template<typename T>
 Matrix<T> Matrix<T>::Multiply(T scalar) const {
 	Matrix<T> newMatrix{ m_row, m_col };
-	for (int x = 0; x < m_row; ++x) {
-		for (int y = 0; y < m_col; ++y) {
+	for (unsigned int x = 0; x < m_row; ++x) {
+		for (unsigned int y = 0; y < m_col; ++y) {
 			newMatrix.m_elements[x][y] = m_elements[x][y] * scalar;
 		}
 	}
@@ -161,8 +161,8 @@ Matrix<T> Matrix<T>::Sum(const Matrix& matrix) const {
 		throw std::invalid_argument("matice nemohou byt secteny");
 
 	Matrix<T> newMatrix{ m_row, m_col };
-	for (int x = 0; x < m_row; ++x) {
-		for (int y = 0; y < m_col; ++y) {
+	for (unsigned int x = 0; x < m_row; ++x) {
+		for (unsigned int y = 0; y < m_col; ++y) {
 			newMatrix.m_elements[x][y] = m_elements[x][y] + matrix.m_elements[x][y];
 		}
 	}
@@ -172,8 +172,8 @@ Matrix<T> Matrix<T>::Sum(const Matrix& matrix) const {
 template<typename T>
 Matrix<T> Matrix<T>::Sum(T scalar) const {
 	Matrix<T> newMatrix{ m_row, m_col };
-	for (int x = 0; x < m_row; ++x) {
-		for (int y = 0; y < m_col; ++y) {
+	for (unsigned int x = 0; x < m_row; ++x) {
+		for (unsigned int y = 0; y < m_col; ++y) {
 			newMatrix.m_elements[x][y] = m_elements[x][y] + scalar;
 		}
 	}
@@ -182,8 +182,8 @@ Matrix<T> Matrix<T>::Sum(T scalar) const {
 
 template<typename T>
 bool Matrix<T>::IsMatch(const Matrix& matrix) const {
-	for (int x = 0; x < m_row; ++x) {
-		for (int y = 0; y < m_col; ++y) {
+	for (unsigned int x = 0; x < m_row; ++x) {
+		for (unsigned int y = 0; y < m_col; ++y) {
 			if (matrix.m_elements[x][y] != m_elements[x][y])
 				return false;
 		}
@@ -193,8 +193,8 @@ bool Matrix<T>::IsMatch(const Matrix& matrix) const {
 
 template<typename T>
 void Matrix<T>::Print() const {
-	for (int x = 0; x < m_row; ++x) {
-		for (int y = 0; y < m_col; ++y) {
+	for (unsigned int x = 0; x < m_row; ++x) {
+		for (unsigned int y = 0; y < m_col; ++y) {
 			std::cout << m_elements[x][y] << '\t';
 		}
 		std::cout << std::endl;
