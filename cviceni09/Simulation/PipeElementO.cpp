@@ -13,5 +13,5 @@ PipeElementO::PipeElementO(int x, int y, IPipe* pipe) {
 PipeElementO::~PipeElementO() {}
 
 bool PipeElementO::IsConnectedCorrectly(const IPipe* pipe) const {
-	return true;
+	return (pipe != nullptr);
 }

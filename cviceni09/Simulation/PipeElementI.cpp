@@ -25,9 +25,5 @@ bool PipeElementI::IsConnectedCorrectly(const IPipe* pipe) const {
 		return false;
 	}
 
-	if (dynamic_cast<const PipeElementT*>(pipe->GetElement(m_x, m_y + 1))) {
-		return false;
-	}
-
-	return true;
+	return (dynamic_cast<const PipeElementT*>(pipe->GetElement(m_x, m_y + 1)) == nullptr);
 }

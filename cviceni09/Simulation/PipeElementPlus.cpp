@@ -13,6 +13,9 @@ PipeElementPlus::PipeElementPlus(int x, int y, IPipe* pipe) {
 PipeElementPlus::~PipeElementPlus() {}
 
 bool PipeElementPlus::IsConnectedCorrectly(const IPipe* pipe) const {
+	if (pipe == nullptr)
+		return false;
+
 	if (m_x == (pipe->GetSize() - 1) || m_x == 0 || m_y == (pipe->GetSize() - 1) || m_y == 0)
 		return false;
 
@@ -31,9 +34,5 @@ bool PipeElementPlus::IsConnectedCorrectly(const IPipe* pipe) const {
 		return false;
 	}
 
-	if (dynamic_cast<const PipeElementT*>(pipe->GetElement(m_x, m_y + 1))) {
-		return false;
-	}
-
-	return true;
+	return (dynamic_cast<const PipeElementT*>(pipe->GetElement(m_x, m_y + 1)) == nullptr);
 }

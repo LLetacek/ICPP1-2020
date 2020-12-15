@@ -13,6 +13,9 @@ PipeElementMinus::PipeElementMinus(int x, int y, IPipe* pipe) {
 PipeElementMinus::~PipeElementMinus() {}
 
 bool PipeElementMinus::IsConnectedCorrectly(const IPipe* pipe) const {
+	if(pipe == nullptr)
+		return false;
+
 	if (m_x == (pipe->GetSize() - 1) || m_x == 0)
 		return false;
 
