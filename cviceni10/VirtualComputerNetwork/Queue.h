@@ -13,6 +13,7 @@ private:
 
     El* m_first;
     El* m_last;
+
 public:
     Queue() {
         m_first = m_last = nullptr;
