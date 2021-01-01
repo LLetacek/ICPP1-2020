@@ -1,0 +1,79 @@
+[
+ {"imatrikulace":"OK-JSC",
+ "nazev" : "Z42M",
+ "letiste" : { "icao" : "LKPL", "poloha" : "Plzen"},
+ "kontroly" : null,
+ "max rychlost" : 226,
+ "letuschopne" : true},
+ 
+ {"imatrikulace":"OK-MPO",
+ "nazev" : "Z226MS",
+ "letiste" : { "icao" : "LKPL" },
+ "kontroly" : [ ],
+ "max rychlost" : null,
+ "letuschopne" : true},
+ 
+ {"imatrikulace":"OK-ELN",
+ "nazev" : "Cessna F172",
+ "letiste" : { "poloha" : "Mlada Boleslav"},
+ "kontroly" : [ "01.01.2018" ],
+ "max rychlost" : 230,
+ "letuschopne" : false},
+ 
+ {"imatrikulace":"OK-PUS19",
+ "nazev" : "WT9 Dynamic",
+ "letiste" : { "icao" : "", "poloha" : ""},
+ "kontroly" : [ "02.05.16", "02.05.17", "02.05.18", "02.05.19", "pulka roku 2020" ],
+ "max rychlost" : 280,
+ "letuschopne" : true},
+ 
+ {"imatrikulace":"OK-6902",
+ "nazev" : "SZD-45A",
+ "letiste" : { "icao" : "LKOL", "poloha" : "Olomouc"},
+ "max rychlost" : 225,
+ "letuschopne" : false},
+ 
+ {"imatrikulace":"D-EVKA",
+ "nazev" : "Z42M",
+ "letiste" : { "icao" : "LKSU", "poloha" : "Sumperk"},
+ "letuschopne" : true},
+ 
+ {"imatrikulace":"OK-4808",
+ "nazev" : "L13 Blanik",
+ "letiste" : { "icao" : "LKRK", "poloha" : "Rakovnik"},
+ "max rychlost" : 240,
+ "letuschopne" : true},
+ 
+ {"imatrikulace":"OK-2079",
+ "nazev" : "ASW-15B",
+ "letiste" : { },
+ "kontroly" : [ null, null, null ],
+ "max rychlost" : 220,
+ "letuschopne" : true},
+ 
+ {"imatrikulace":"OK-FUR01",
+ "nazev" : "EV-97 Eurostar",
+ "letiste" : null,
+ "letuschopne" : true},
+ 
+ {"imatrikulace":"OK-BLB",
+ "nazev" : "Diamond DA 20-A1 Katana",
+ "letiste" : { "icao" : "LKHS", "poloha" : "Ceske Budejovice - letiste Hosin"},
+ "max rychlost" : 256,
+ "letuschopne" : true},
+ 
+ {"imatrikulace":"OK-GUU25",
+ "nazev" : "Avia BH-1",
+ "letiste" : null,
+ "kontroly" : null,
+ "max rychlost" : 137,
+ "letuschopne" : true},
+ 
+ {"imatrikulace":"VN-C808",
+ "nazev" : "An-2TP",
+ "letiste" : { "icao" : "JZSK", "poloha" : "Betlem"},
+ "kontroly" : [ "11.09.2016", "11.09.2018", "11.09.20" ],
+ "max rychlost" : 250,
+ "letuschopne" : false}
+ 
+]
